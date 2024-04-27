@@ -35,16 +35,16 @@ a {
 	top: 0px;
 	width: 100%;
 	height: 50px;
-	background: #2b6964;
+	background: #ffffff;
 	z-index: 98;
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-	box-shadow: 0 4px 1px rgba(0,0,0,0.15);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.15);
 }
 #title {
-	font-size: 20px;
-	color: #b0ddce;
+	font-size: 25px;
+	color: #5c5c4b;
 	padding: 10px 15px;
 }
 #menu {
@@ -58,8 +58,8 @@ a {
 	list-style: none;
 }
 #menu .menu-item-link{
-	font-size: 12px;
-	color: #b0ddce;
+	font-size: 14px;
+	color: #646460;
 }
 #menu .menu-item-link:hover {
 	border-bottom: 1px solid;
@@ -98,7 +98,7 @@ a {
 	left: -250px;
 	height: 100%;
 	top: 0px;
-	background: #41555d;
+	background: #e5e5de;
 	z-index: 99;
 }
 #sidebar.on {
@@ -113,7 +113,7 @@ a {
 	height: 35px;
 	margin: 5px 10px 5px 10px;
 	border-radius:5px;
-	background: #3f4448;
+	background: #ffffff;
 	text-indent: 20px;
 	color: #64cfff;
 }
@@ -160,16 +160,16 @@ a {
 	white-space: nowrap;
 }
 #sidebar ul li a {
-	color: #999;
-	font-size: 14px;
+	color: #433131b0;
+	font-size: 16px;
 }
 
 #sidebar ul li a:hover{
-	color: #ccc;
+	color: #cd8c6f;
 	border-bottom: 1px solid #ccc;
 }
 #sidebar .active a{
-	color: #9cc7b8;
+	color: #6eb65a;
 	border-bottom: 1px solid #9cc7b8;
 }
 .article-toc ul li i {
@@ -394,16 +394,17 @@ table td {
 	-webkit-justify-content: flex-end;
 	justify-content: flex-end;
 }
+
 /* footer */
 #footer{
 	font-size: 14px;
 	height: 50px;
-	background-color: #60281e;
-	color: #dfb7b7;
+	background-color: #ffffff;
+	color: #746d52;
 	text-align: center;
 }
 #footer a {
-    color: #fff;
+    color: #594242;
 }
 #footer p {
     padding: 5px;
@@ -415,3 +416,4 @@ table td {
 		opacity: 0.95;
 	}
 }
+

@@ -19,7 +19,7 @@ function pageScroll() {
     start_hight = end_hight;
     var $header = $('#header');
     if (distance > 0 && end_hight > 50) {
-      $header.hide();
+      //$header.hide();
     } else if (distance < 0) {
       $header.show();
     } else {

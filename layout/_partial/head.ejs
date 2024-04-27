@@ -53,12 +53,24 @@
 	<%- css('https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css') %>
 	<%- css('https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/darcula.min.css') %>
 	<%- css('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css') %>
+	<%- css('https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/themes/prism.min.css') %>
+	<%- css('https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/plugins/line-numbers/prism-line-numbers.min.css') %>
+
 
 	<%- js('https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js') %>
 	<%- js('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js') %>
 	<%- js('https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js') %>
 	<%- js('https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js') %>
 	<%- js('js/main.js') %>
+
+        <!-- Mermaid JS -->
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9/dist/mermaid.min.js"></script>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            mermaid.initialize({ startOnLoad: true });
+          });
+        </script>
+
 
 	<% if (theme.valine){ %>
 		<%- js('https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js') %>

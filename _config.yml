@@ -6,3 +6,21 @@ language:
   - en
   - zh-Hans
   - tr
+
+sidebar:
+    # name for left sidebar post list. true: title name; false: file name
+    usePostTitle: true
+
+####### header bar #####
+# before set to true, please maker sure you've created hexo tags\categories\about pages
+tags: true
+categories: true
+links:
+    # GitHub links，start with http、https or //
+    github: https://github.com/sisyphus1212
+    # normal links，support multiple
+    #custom:
+    #  - name: PR
+    #    URL: https://github.com/wujun234/hexo-theme-tree
+
+
