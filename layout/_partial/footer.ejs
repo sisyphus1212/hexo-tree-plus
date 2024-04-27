@@ -21,8 +21,8 @@
 		</span>
 	<% } %>
 	<br>
-	Theme <a href="//github.com/wujun234/hexo-theme-tree" target="_blank">Tree</a>
-	by <a href="//wujun.me" target="_blank">Wu Jun</a>
+	Theme <a href="//github.com/sisyphus1212" target="_blank">Tree</a>
+	by <a href="//space.bilibili.com/228776952" target="_blank">liaocj</a>
 	Powered by <a href="//hexo.io" target="_blank">Hexo</a>
 	</p>
 </div>
@@ -43,8 +43,28 @@
       }
     </script>
 <% } %>
+
 <% if (theme.prism && theme.prism.enable) { %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+        mermaid.initialize({
+            theme: 'forest',
+            callback: function() {
+                // 选择所有 #article-content 下的 pre.mermaid 中的 SVG 并应用缩放功能
+                d3.selectAll("#article-content > pre.mermaid svg").each(function() {
+                    const svg = d3.select(this); // this 指向当前遍历到的 SVG 元素
+                    const zoom = d3.zoom()
+                        .on("zoom", function() {
+                            svg.attr("transform", d3.event.transform); // 应用缩放变换
+                        });
+                    svg.call(zoom); // 为这个 SVG 启用缩放
+                });
+            }
+        });
+});
+</script>
 <% } %>
 

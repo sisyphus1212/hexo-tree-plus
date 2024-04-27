@@ -1,23 +1,23 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-	
+
 	<!-- title -->
-	<% 
-		var title = page.title; 
+	<%
+		var title = page.title;
 		if ( title == '' ) {
 			var title = page.slug.split("/")[page.slug.split("/").length-1]
 		}else {
-			var title = page.title; 
+			var title = page.title;
 		};
 	%>
 	<title>
 	<% if (title){ %>
-		<%= title %> | 
-	<% } %> 
+		<%= title %> |
+	<% } %>
 	<%= config.title %>
 	</title>
-	
+
 	<!-- keywords,description -->
 	<% if (page.keywords){ %>
 		<meta name="keywords" content="<%= page.keywords %>,<%= config.keywords %>" />
@@ -63,13 +63,39 @@
 	<%- js('https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js') %>
 	<%- js('js/main.js') %>
 
-        <!-- Mermaid JS -->
-        <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9/dist/mermaid.min.js"></script>
-        <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            mermaid.initialize({ startOnLoad: true });
-          });
-        </script>
+	<!-- Mermaid JS -->
+	<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9/dist/mermaid.min.js"></script>
+	<!-- D3.js -->
+	<script src="https://d3js.org/d3.v6.min.js"></script>
+
+	<script>
+		// Define the function globally
+		(function(d3) {
+		function initializeZoom(d3) {
+				// Apply the zoom behavior to each SVG
+				document.querySelectorAll("pre.mermaid svg").forEach(svg => {
+				const zoomBehavior = d3.zoom().on("zoom", (event) => {
+					d3.select(svg).select('g').attr("transform", event.transform);
+				});
+				d3.select(svg).call(zoomBehavior).on("dblclick.zoom", null);
+				});
+			console.log('Zoom initialized.');
+		}
+
+		document.addEventListener('DOMContentLoaded', function() {
+			mermaid.initialize({ startOnLoad: true, theme: 'forest' });
+
+			// Polling for SVG rendering
+			const checkRender = setInterval(() => {
+				if (document.querySelector("pre.mermaid svg")) {
+					clearInterval(checkRender);
+					// Pass the d3 object to initializeZoom
+					initializeZoom(d3);
+				}
+			}, 300); // Check every 300 milliseconds
+		});
+		})(window.d3);
+	</script>
 
 
 	<% if (theme.valine){ %>
