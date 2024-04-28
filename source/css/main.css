@@ -14,10 +14,10 @@ a {
     text-decoration: none;
 }
 .content-on{
-	padding: 14px 14px 14px 250px
+	padding: 14px 14px 14px 270px
 }
 .content-off{
- 	padding: 14px;
+ 	padding: 20px;
 }
 .header-on{
 	padding-left: 250px;
@@ -72,16 +72,16 @@ a {
     right: 50px;
 }
 #sidebar-toggle{
-	top: 60px;
-	left: 260px;
+	top: 50px;
+	left: 235px;
 	position: absolute;
 }
 .toggle {
 	border: none;
-	height: 45px;
-	width: 45px;
+	height: 30px;
+	width: 30px;
 	border-radius: 50%;
-	background-color: rgba(0,0,0,0.5);
+	background-color: rgba(0,0,0,0.18);
 	color: #fff;
 	transition: all 0.3s ease-in-out;
 	opacity: 0.5;
