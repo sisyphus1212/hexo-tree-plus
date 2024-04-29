@@ -85,15 +85,15 @@ document.addEventListener("DOMContentLoaded", function() {
 	item.outerHTML = svg
   }
 </script>
+
 <!-- D3.js -->
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
 <script>
 (function(d3) {
-    function initializeZoom(d3, selector) {
-        const svgElement = document.querySelector(selector);
+    function initializeZoom(d3, svgElement) {
         if (!svgElement) {
-            console.error('SVG element not found for the provided selector:', selector);
+            console.error('SVG element not found or passed incorrectly.');
             return;
         }
 
@@ -103,18 +103,22 @@ document.addEventListener("DOMContentLoaded", function() {
             });
 
         d3.select(svgElement).call(zoomBehavior).on("dblclick.zoom", null);
-        console.log('Zoom initialized on:', selector);
+        console.log('Zoom initialized on:', svgElement);
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        // Polling for SVG rendering
-        const checkRender = setInterval(() => {
-            const svgElement = document.querySelector('#graph0');
+        // Select the svg that contains #graph0 by using closest to find the parent SVG of #graph0
+        const graph0 = document.querySelector('#graph0');
+        if (graph0) {
+            const svgElement = graph0.closest('svg'); // Find the closest svg ancestor
             if (svgElement) {
-                clearInterval(checkRender);
-                initializeZoom(d3, '#graph0');
+                initializeZoom(d3, svgElement);
+            } else {
+                console.error('No SVG element found containing #graph0');
             }
-        }, 300); // Check every 300 milliseconds
+        } else {
+            console.error('Element with id #graph0 not found.');
+        }
     });
 })(window.d3);
 </script>
