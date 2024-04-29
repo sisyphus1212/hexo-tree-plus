@@ -69,29 +69,36 @@ document.addEventListener("DOMContentLoaded", function() {
 <% } %>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/viz.js/1.7.1/viz.js'></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/svg-pan-zoom/3.6.1/svg-pan-zoom.min.js"></script>
+<!-- D3.js -->
+<script src="https://d3js.org/d3.v6.min.js"></script>
+
 <script>
-  String.prototype.replaceAll = function(search, replacement) {
-    var target = this;
-    return target.split(search).join(replacement);
-  };
+(function(d3) {
+    function initializeZoom(d3, selector) {
+        const svgElement = document.querySelector(selector);
+        if (!svgElement) {
+            console.error('SVG element not found for the provided selector:', selector);
+            return;
+        }
 
-  let vizObjects = document.querySelectorAll('.graphviz');
+        const zoomBehavior = d3.zoom()
+            .on('zoom', (event) => {
+                d3.select(svgElement).select('g').attr("transform", event.transform);
+            });
 
-  for (let item of vizObjects) {
-    let svg = undefined;
-    try {
-      svg = Viz(item.textContent.replaceAll('–', '--'), 'svg');
-      let wrapper = document.createElement("div");
-      wrapper.innerHTML = svg;
-      item.parentNode.replaceChild(wrapper, item);
-      svgPanZoom(wrapper.firstChild, {
-        zoomEnabled: true,
-        controlIconsEnabled: true
-      });
-    } catch(e) {
-      svg = `<pre class="error">${e}</pre>`;
-      item.outerHTML = svg;
+        d3.select(svgElement).call(zoomBehavior).on("dblclick.zoom", null);
+        console.log('Zoom initialized on:', selector);
     }
-  }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Polling for SVG rendering
+        const checkRender = setInterval(() => {
+            const svgElement = document.querySelector('#graph0');
+            if (svgElement) {
+                clearInterval(checkRender);
+                initializeZoom(d3, '#graph0');
+            }
+        }, 300); // Check every 300 milliseconds
+    });
+})(window.d3);
 </script>
