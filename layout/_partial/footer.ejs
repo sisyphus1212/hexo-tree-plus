@@ -7,7 +7,7 @@
 	<% } else { %>
 	    <a href="/"><%- config.author %></a>
 	<% } %>
-	
+
 	<% if (theme.busuanzi){ %>
 		|
 		<span id="busuanzi_container_site_pv">
@@ -15,7 +15,7 @@
 			<span id="busuanzi_value_site_pv"></span>
 		</span>
 		|
-		<span id="busuanzi_container_site_uv"> 
+		<span id="busuanzi_container_site_uv">
 			uv
 			<span id="busuanzi_value_site_uv"></span>
 		</span>
@@ -67,4 +67,23 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 <% } %>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/viz.js/1.7.1/viz.js'></script>
+<script>
+  String.prototype.replaceAll = function(search, replacement) {
+	var target = this;
+	return target.split(search).join(replacement);
+  };
+
+  let vizObjects = document.querySelectorAll('.graphviz')
+
+  for (let item of vizObjects) {
+	let svg = undefined
+	try {
+	  svg = Viz(item.textContent.replaceAll('–', '--'), 'svg')
+	} catch(e) {
+	  svg = `<pre class="error">${e}</pre>`
+	}
+	item.outerHTML = svg
+  }
+</script>
 
